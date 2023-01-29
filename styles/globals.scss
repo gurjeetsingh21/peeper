@@ -1,0 +1,49 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+}
+
+$background-secondary: #111219;
+$text-menu-item-active: #000000;
+$gradient: linear-gradient(90deg, #92FE9D 0%, #00C9FF 100%);
+
+.ant-layout {
+    font-family: 'Poppins' !important;
+
+    .ant-layout-sider {
+        background: $background-secondary ;
+
+        .logo-container {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .ant-menu {
+            font-family: inherit;
+            background: $background-secondary;
+        }
+
+        .ant-menu-item-selected {
+            background: $gradient;
+            color: $text-menu-item-active;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .ant-menu-item:not(.ant-menu-item-selected):active {
+            background: transparent;
+        }
+    }
+
+    .container {
+        .bg-gradient {
+            background: $gradient;
+        }
+    }
+}

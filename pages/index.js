@@ -1,14 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import AppLayout from "@/components/Layouts/AppLayout";
+import { ConfigProvider } from "antd";
 
 export default function Home() {
   return (
     <>
-      <div>Gurjeet</div>
+      <Head>
+        <title>Peeper</title>
+      </Head>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "green",
+          },
+        }}
+      >
+        <AppLayout />
+      </ConfigProvider>
     </>
-  )
+  );
 }
