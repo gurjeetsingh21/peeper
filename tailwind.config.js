@@ -12,8 +12,14 @@ module.exports = {
       colors: {
         transparent: "transparent",
         white: "#ffffff",
+        kpi: {
+          "text-increase": "#6BEBA4",
+          "text-decrease": "#F52525",
+          "bg-increase": "#26666333",
+          "bg-decrease": "#f5252526",
+        },
         sidebar: {
-          background: "1e1e1e",
+          background: "#111219",
           color: "#ffffffa6",
         },
         header: {

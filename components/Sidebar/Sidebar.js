@@ -16,7 +16,13 @@ const items = [
 
 const Sidebar = () => {
   return (
-    <Sider collapsible={false} width={220} breakpoint="lg" collapsedWidth={0}>
+    <Sider
+      className="overflow-auto h-[100vh] !sticky top-0 left-0 bottom-0"
+      collapsible={false}
+      width={220}
+      breakpoint="lg"
+      collapsedWidth={0}
+    >
       <div className="px-4 py-4 flex items-center text-white text-[30px] font-medium">
         <Image alt="logo" src={Logo} height="32" />
         <span className="mb-2">Peeper</span>
