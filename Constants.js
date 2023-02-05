@@ -16,16 +16,20 @@ export const GRAPH_QUERY = {
       priceUSD
     }
   }`,
-  registerReferralEntities: `registerReferralEntities(orderBy: id, orderDirection: desc, first: 5) {
-    id,
-    referredTo,
-    referredBy,
-    commission,
-    commissionUSD,
-    domainName
+  registerReferralEntities: `{
+    registerReferralEntities(orderBy: date, orderDirection: desc, first: 5) {
+      id,
+      referredTo,
+      referredBy,
+      commission,
+      commissionUSD,
+      domainName,
+      date
+    }
   }`,
 };
 
 export const QUERY_NAMES = {
   REGISTRY_DAY_DATAS: "registryDayDatas",
+  REGISTER_REFERRAL_ENTITIES: "registerReferralEntities",
 };

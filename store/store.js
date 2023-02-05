@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { registryDatas } from "./slices";
+import { registryDatas, referralData, error } from "./slices";
 
 const store = configureStore({
   reducer: {
     registryData: registryDatas.reducer,
+    referralData: referralData.reducer,
+    error: error.reducer,
   },
 });
 

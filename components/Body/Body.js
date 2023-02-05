@@ -1,17 +1,16 @@
-import LineChart from "../Charts/LineChart";
+import LineChart from "@/atoms/Charts/LineChart";
+import BarChart from "@/atoms/Charts/BarChart";
 import { useSelector } from "react-redux";
-import Error from "../Error/Error";
 import moment from "moment";
 import { Row, Col } from "antd";
+import Card from "@/atoms/Card/Card";
+import ReferralDetails from "../ReferralDetails/ReferralDetails";
 
 const Body = () => {
-  const { data, isSuccess } = useSelector((state) => state.registryData);
-  if (isSuccess) {
-    var { registeryDayDatas } = data;
-  } else {
-    return <Error />;
-  }
+  const registryData = useSelector((state) => state.registryData);
+  var { registeryDayDatas } = registryData?.data;
   const isLoading = registeryDayDatas ? false : true;
+
   if (!isLoading) {
     registeryDayDatas = registeryDayDatas
       .map((dayData) => {
@@ -20,6 +19,7 @@ const Body = () => {
           date: moment(dayData.date * 1000).format("DD MMM YY"),
           dailyRegistersCount: parseInt(dayData.dailyRegistersCount),
           dailyUniqueCount: parseInt(dayData.dailyUniqueCount),
+          dailyTxns: parseInt(dayData.dailyTxns),
         };
       })
       .reverse();
@@ -27,38 +27,43 @@ const Body = () => {
 
   return (
     <>
-      <Row className="gap-x-4 gap-y-4 mb-3">
+      <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
         <Col xs={24} md={24} lg={15}>
-          <div className="rounded-lg h-[270px] p-4 bg-gradient-to-br from-kpi-card-from to to-kpi-card-to backdrop-blur-{20px}">
-            <div className="">
-              <h2 className="font-poppins text-base font-extrabold mb-3">
-                Sales Analytics
-              </h2>
-              <LineChart
-                isLoading={isLoading}
-                data={!isLoading && registeryDayDatas}
-                xField="date"
-                yField="dailyRegistersCount"
-              />
-            </div>
-          </div>
+          <Card title="Sales Analytics">
+            <LineChart
+              isLoading={isLoading}
+              data={!isLoading && registeryDayDatas}
+              xField="date"
+              yField="dailyRegistersCount"
+            />
+          </Card>
+        </Col>
+        <Col xs={24} md={24} lg={8}>
+          <Card title="Daily Transactions">
+            <BarChart
+              isLoading={isLoading}
+              data={!isLoading && registeryDayDatas.slice(-7)}
+              xField="date"
+              yField="dailyTxns"
+            />
+          </Card>
+        </Col>
+      </Row>
+      <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
+        <Col xs={24} md={24} lg={12}>
+          <ReferralDetails />
         </Col>
       </Row>
       <Row className="gap-x-4 gap-y-4 mb-3">
         <Col xs={24} md={24} lg={24}>
-          <div className="rounded-lg h-[270px] p-4 bg-gradient-to-br from-kpi-card-from to to-kpi-card-to backdrop-blur-{20px}">
-            <div className="">
-              <h2 className="font-poppins text-base font-extrabold mb-3">
-                Unique Owners
-              </h2>
-              <LineChart
-                isLoading={isLoading}
-                data={!isLoading && registeryDayDatas}
-                xField="date"
-                yField="dailyUniqueCount"
-              />
-            </div>
-          </div>
+          <Card title="Unique Owners">
+            <LineChart
+              isLoading={isLoading}
+              data={!isLoading && registeryDayDatas}
+              xField="date"
+              yField="dailyUniqueCount"
+            />
+          </Card>
         </Col>
       </Row>
     </>

@@ -1,19 +1,12 @@
-import useHttp from "@/hooks/useHttp";
 import { Row, Col } from "antd";
-import KpiCard from "./KpiCard";
+import KpiCard from "@/atoms/Card/KpiCard";
 import { calculateValue, calculatePercentChange } from "@/utils/helper";
-import Error from "../Error/Error";
-import { fetchRegistryDatas } from "@/store/actions";
 import { useSelector } from "react-redux";
 
 const KpiCards = () => {
-  const { data, isSuccess } = useSelector((state) => state.registryData);
-  useHttp(fetchRegistryDatas);
-  if (isSuccess) {
-    var { registeryDayDatas } = data;
-  } else {
-    return <Error />;
-  }
+  const { data } = useSelector((state) => state.registryData);
+  var { registeryDayDatas } = data;
+
   const isLoading = registeryDayDatas ? false : true;
   if (
     !isLoading &&
@@ -29,7 +22,7 @@ const KpiCards = () => {
     });
   }
   return (
-    <Row className="gap-x-4 gap-y-4 mb-3">
+    <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
       <Col xs={24} md={11} lg={5}>
         <KpiCard
           name="Today's Revenue"

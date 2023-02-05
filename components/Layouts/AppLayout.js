@@ -4,8 +4,18 @@ const { Content, Footer } = Layout;
 import Sidebar from "../Sidebar/Sidebar";
 import KpiCards from "../KpiCards.js/KpiCards";
 import Body from "../Body/Body";
+import useHttp from "@/hooks/useHttp";
+import { fetchRegistryDatas, fetchReferralData } from "@/store/actions";
+import { useSelector } from "react-redux";
+import Error from "@/components/Error/Error";
 
 const AppLayout = () => {
+  useHttp(fetchRegistryDatas);
+  useHttp(fetchReferralData);
+  const { err, isError } = useSelector((state) => state.error);
+  if (isError) {
+    return <Error />;
+  }
   return (
     <Layout hasSider>
       <Sidebar />

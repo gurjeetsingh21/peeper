@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
 import { Skeleton } from "antd";
 const Line = dynamic(
@@ -7,7 +7,6 @@ const Line = dynamic(
 );
 
 const LineChart = ({ isLoading, data, xField, yField }) => {
-  console.log(data, yField);
   if (isLoading) {
     return (
       <div className="rounded-lg p-2 bg-gradient-to-br from-kpi-card-from to to-kpi-card-to backdrop-blur-{20px}">

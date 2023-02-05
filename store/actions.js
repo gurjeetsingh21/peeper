@@ -1,8 +1,10 @@
 import HTTP_SERVICE_CALL from "@/HTTP_SERVICE/HTTP_SERVICE_CALL";
-import { registryDatas } from "./slices";
+import { registryDatas, referralData, error } from "./slices";
 import * as Constants from "@/Constants";
 
 const registryDataActions = registryDatas.actions;
+const referralDataActions = referralData.actions;
+const errorActions = error.actions;
 
 export const fetchRegistryDatas = () => {
   return async (dispatch) => {
@@ -13,14 +15,33 @@ export const fetchRegistryDatas = () => {
       dispatch(
         registryDataActions.updateRegistry({
           data,
-          isSuccess,
         })
       );
     } else {
       dispatch(
-        registryDataActions.updateRegistry({
-          data: [],
-          isSuccess,
+        errorActions.throwError({
+          err: data,
+        })
+      );
+    }
+  };
+};
+
+export const fetchReferralData = () => {
+  return async (dispatch) => {
+    const [data, isSuccess] = await HTTP_SERVICE_CALL(
+      Constants.QUERY_NAMES.REGISTER_REFERRAL_ENTITIES
+    );
+    if (isSuccess) {
+      dispatch(
+        referralDataActions.updateReferralEntities({
+          data,
+        })
+      );
+    } else {
+      dispatch(
+        errorActions.throwError({
+          err: data,
         })
       );
     }
