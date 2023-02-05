@@ -2,22 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Card from "@/atoms/Card/Card";
 import moment from "moment";
+import { getTimeDifference } from "@/utils/helper";
 
 const ReferralDetails = () => {
   const { data } = useSelector((state) => state.referralData);
   const { registerReferralEntities } = data;
   console.log(registerReferralEntities);
-
-  const getTimeDifference = (num) => {
-    const hr = Math.floor(num / 60);
-    const min = num % 60;
-    if (hr === 0) {
-      return `${min} min(s)`;
-    } else if (min === 0) {
-      return `${hr} hr(s)`;
-    }
-    return `${hr} hr(s) ${min} min(s)`;
-  };
 
   return (
     <Card title="Referral Details" height="h-[250px]">

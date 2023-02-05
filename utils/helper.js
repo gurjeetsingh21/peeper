@@ -29,3 +29,14 @@ export const calculatePercentChange = (registryDayDatas, key) => {
     ).toFixed(2);
   return { value: Math.abs(value), isIncrease: value > 0 };
 };
+
+export const getTimeDifference = (num) => {
+  const hr = Math.floor(num / 60);
+  const min = num % 60;
+  if (hr === 0) {
+    return `${min} min(s)`;
+  } else if (min === 0) {
+    return `${hr} hr(s)`;
+  }
+  return `${hr} hr(s) ${min} min(s)`;
+};
