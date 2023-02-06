@@ -8,7 +8,6 @@ export const registryDatas = createSlice({
   reducers: {
     updateRegistry: (state, action) => {
       state.data = action.payload?.data;
-      state.isSuccess = action.payload?.isSuccess;
     },
   },
 });
@@ -21,7 +20,6 @@ export const referralData = createSlice({
   reducers: {
     updateReferralEntities: (state, action) => {
       state.data = action.payload?.data;
-      state.isSuccess = action.payload?.isSucces;
     },
   },
 });

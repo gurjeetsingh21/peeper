@@ -7,7 +7,6 @@ import { getTimeDifference } from "@/utils/helper";
 const ReferralDetails = () => {
   const { data } = useSelector((state) => state.referralData);
   const { registerReferralEntities } = data;
-  console.log(registerReferralEntities);
 
   return (
     <Card title="Referral Details" height="h-[250px]">
