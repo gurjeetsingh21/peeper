@@ -2,12 +2,23 @@ import { Row, Col } from "antd";
 import KpiCard from "@/atoms/Card/KpiCard";
 import { calculateValue, calculatePercentChange } from "@/utils/helper";
 import { useSelector } from "react-redux";
+import BigNumber from "bignumber.js";
 
 const KpiCards = () => {
   const { data } = useSelector((state) => state.registryData);
   var { registeryDayDatas } = data;
 
-  const isLoading = registeryDayDatas ? false : true;
+  const { data: registeryContractData } = useSelector(
+    (state) => state.registeryContractData
+  );
+  const { registeryContracts } = registeryContractData;
+  console.log("====================================");
+  console.log({
+    registeryContractData: registeryContractData?.registeryContracts,
+    registeryContracts,
+  });
+  console.log("====================================");
+  const isLoading = registeryDayDatas && registeryContracts ? false : true;
   if (
     !isLoading &&
     new Date(registeryDayDatas[0].date * 1000).getDate() !==
@@ -25,13 +36,23 @@ const KpiCards = () => {
     <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
       <Col xs={24} md={11} lg={5}>
         <KpiCard
+          name="MATIC Price"
+          isLoading={isLoading}
+          value={calculateValue(registeryDayDatas, "priceUSD", 1)}
+          prefix=""
+          percentChange={calculatePercentChange(registeryDayDatas, "priceUSD")}
+        />
+      </Col>
+      <Col xs={24} md={11} lg={5}>
+        <KpiCard
           name="Today's Revenue"
           isLoading={isLoading}
-          value={calculateValue(registeryDayDatas, "dailyVolumeUSD", 10e18)}
-          prefix="₹"
+          value={calculateValue(registeryDayDatas, "dailyVolumeETH", 1e18)}
+          prefix=""
+          postfix="MATIC"
           percentChange={calculatePercentChange(
             registeryDayDatas,
-            "dailyVolumeUSD"
+            "dailyVolumeETH"
           )}
         />
       </Col>
@@ -47,18 +68,7 @@ const KpiCards = () => {
           )}
         />
       </Col>
-      <Col xs={24} md={11} lg={5}>
-        <KpiCard
-          name="Today's Visitors"
-          isLoading={isLoading}
-          value={calculateValue(registeryDayDatas, "dailyRegistersCount", 1)}
-          prefix=""
-          percentChange={calculatePercentChange(
-            registeryDayDatas,
-            "dailyRegistersCount"
-          )}
-        />
-      </Col>
+
       <Col xs={24} md={11} lg={5}>
         <KpiCard
           name="Today's Referrals"
@@ -69,6 +79,56 @@ const KpiCards = () => {
             registeryDayDatas,
             "dailyReferralsCount"
           )}
+        />
+      </Col>
+      <Col xs={24} md={11} lg={5}>
+        <KpiCard
+          name="Total Mints"
+          isLoading={isLoading}
+          value={
+            (registeryContracts?.length &&
+              registeryContracts[0]["totalMintsCount"]) ||
+            "0"
+          }
+          prefix=""
+        />
+      </Col>
+      <Col xs={24} md={11} lg={5}>
+        <KpiCard
+          name="Total Referrals"
+          isLoading={isLoading}
+          value={
+            (registeryContracts?.length &&
+              registeryContracts[0]["totalReferralsCount"]) ||
+            "0"
+          }
+          prefix=""
+        />
+      </Col>
+      <Col xs={24} md={11} lg={5}>
+        <KpiCard
+          name="Unique Registers"
+          isLoading={isLoading}
+          value={
+            (registeryContracts?.length &&
+              registeryContracts[0]["totalUniqueRegistrationCount"]) ||
+            "0"
+          }
+          prefix=""
+        />
+      </Col>
+      <Col xs={24} md={11} lg={5}>
+        <KpiCard
+          name="Total Volume [ Matic ]"
+          isLoading={isLoading}
+          value={
+            (registeryContracts?.length &&
+              new BigNumber(registeryContracts[0]["totalVolumeGeneratedETH"])
+                ?.div(1e18)
+                ?.toFormat(2)) ||
+            "0"
+          }
+          prefix=""
         />
       </Col>
     </Row>

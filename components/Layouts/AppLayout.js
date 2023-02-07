@@ -5,26 +5,35 @@ import Sidebar from "../Sidebar/Sidebar";
 import KpiCards from "../KpiCards.js/KpiCards";
 import Body from "../Body/Body";
 import useHttp from "@/hooks/useHttp";
-import { fetchRegistryDatas, fetchReferralData } from "@/store/actions";
+import {
+  fetchRegistryDatas,
+  fetchReferralData,
+  fetchRegistryContractData,
+} from "@/store/actions";
 import { useSelector } from "react-redux";
 import Error from "@/components/Error/Error";
+import Search from "../Search/Search";
 
 const AppLayout = () => {
   useHttp(fetchRegistryDatas);
   useHttp(fetchReferralData);
+  useHttp(fetchRegistryContractData);
   const { err, isError } = useSelector((state) => state.error);
   if (isError) {
     return <Error />;
   }
   return (
     <Layout hasSider>
-      <Sidebar />
-      <Layout className="site-layout">
-        <Content className="bg-sidebar-background">
+      <Sidebar  />
+      <Layout className="site-layout ">
+        <Content className="bg-sidebar-background ">
           <div className="text-white">
-            <div className="p-4 bg-gradient-to-r from-header-from to-header-to h-[8rem]">
-              <div className="heading flex text-[28px] mb-5">
-                Dashboard Overview
+            <div className="p-10 bg-[url('/bg-head.svg')]  bg-contain bg-no-repeat bg-top">
+              <div className="flex w-full justify-between mb-10">
+                <div className="heading flex text-[28px] mb-5">
+                  Dashboard Overview
+                </div>
+                <Search />
               </div>
               <KpiCards />
             </div>
@@ -38,7 +47,7 @@ const AppLayout = () => {
             textAlign: "center",
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          All rights reserved ©Peeper
         </Footer>
       </Layout>
     </Layout>

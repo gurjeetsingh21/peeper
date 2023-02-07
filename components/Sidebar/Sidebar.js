@@ -23,9 +23,9 @@ const Sidebar = () => {
       breakpoint="lg"
       collapsedWidth={0}
     >
-      <div className="px-4 py-4 flex items-center text-white text-[30px] font-medium">
-        <Image alt="logo" src={Logo} height="32" />
-        <span className="mb-2">Peeper</span>
+      <div className="p-4 flex items-center text-white text-[30px] font-medium mb-10">
+        <Image alt="logo" src={Logo} height="32" className="mb-0"/>
+        <span className="mx-2 text-2xl">Peeper</span>
       </div>
       <div className="text-sidebar-color px-5">Menu</div>
       <Menu
@@ -34,6 +34,7 @@ const Sidebar = () => {
         mode="inline"
         items={items}
         className="px-4"
+        
       />
     </Sider>
   );

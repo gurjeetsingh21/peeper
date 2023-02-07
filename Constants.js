@@ -27,9 +27,21 @@ export const GRAPH_QUERY = {
       date
     }
   }`,
+  registeryContracts: `{
+   registeryContracts {
+    totalMintsCount
+    totalReferralsCount
+    totalUniqueRegistrationCount
+    totalCommissionGeneratedETH
+    totalCommissionGeneratedUSD
+    totalVolumeGeneratedETH
+    totalVolumeGeneratedUSD
+  }
+  }`,
 };
 
 export const QUERY_NAMES = {
   REGISTRY_DAY_DATAS: "registryDayDatas",
   REGISTER_REFERRAL_ENTITIES: "registerReferralEntities",
+  REGISTERY_CONTRACT: "registeryContracts",
 };

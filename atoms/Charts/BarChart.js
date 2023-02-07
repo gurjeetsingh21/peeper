@@ -19,6 +19,7 @@ const BarChart = ({ isLoading, data, xField, yField }) => {
     height: 200,
     xField: xField,
     yField: yField,
+  
     columnStyle: {
       fill: "l(0) 0:#92FE9D 1:#00C9FF",
       stroke: "l(0) 0:#92FE9D 1:#00C9FF",
@@ -26,11 +27,11 @@ const BarChart = ({ isLoading, data, xField, yField }) => {
       fillOpacity: 2,
       borderRadius: 10,
       shadowColor: "#92FE9D",
-      shadowBlur: 20,
+      shadowBlur: 5,
       shadowOffsetX: 0,
       shadowOffsetY: 0,
       cursor: "pointer",
-      radius: [5, 5, 5, 5],
+      radius: [5, 5, 0, 0],
     },
     yAxis: {
       grid: {
@@ -39,11 +40,14 @@ const BarChart = ({ isLoading, data, xField, yField }) => {
             stroke: "gray",
             lineWidth: 0.3,
             lineDash: [5, 5],
+            
           },
         },
       },
       axisLine: false,
+    
     },
+    
   };
   return <Column {...config} />;
 };

@@ -1,0 +1,3 @@
+const REGISTRY_CONTRACT_DATA = `
+
+`

@@ -23,7 +23,17 @@ export const referralData = createSlice({
     },
   },
 });
-
+export const registeryData = createSlice({
+  name: "registery entities",
+  initialState: {
+    data: [],
+  },
+  reducers: {
+    updateRegisteryEntities: (state, action) => {
+      state.data = action.payload?.data;
+    },
+  },
+});
 export const error = createSlice({
   name: "error",
   initialState: {
