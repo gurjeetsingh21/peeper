@@ -23,6 +23,7 @@ const LineChart = ({ isLoading, data, xField, yField }) => {
     xField: xField,
     yField: yField,
     smooth: true,
+
     lineStyle: {
       stroke: "l(0) 0:#92FE9D 1:#00C9FF",
       lineWidth: 4,
@@ -45,9 +46,37 @@ const LineChart = ({ isLoading, data, xField, yField }) => {
       },
       axisLine: false,
     },
+    tooltip: {
+      customContent: (title, data) => {
+  
+        return `<div class="p-2 text-[14px]">
+        
+        <p>${title}</p>
+        <div class="flex justify-between gap-5 mt-2">
+
+        <p >${data[0] ? data[0].name : ""}</p>
+        
+        <p>${data[0] ? data[0].value : ""}</p>
+        
+        </div>
+        
+        </div>`;
+      },
+      
+    },
   };
 
-  return <Line {...config} />;
+  return (
+    <Line
+      {...config}
+      theme={"dark"}
+      // tooltip={{
+      //   container: (title, data) => {
+      //     return <div className="p-3 ">${title}</div>;
+      //   },
+      // }}
+    />
+  );
 };
 
 export default LineChart;

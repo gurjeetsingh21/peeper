@@ -19,7 +19,7 @@ const BarChart = ({ isLoading, data, xField, yField }) => {
     height: 200,
     xField: xField,
     yField: yField,
-  
+
     columnStyle: {
       fill: "l(0) 0:#92FE9D 1:#00C9FF",
       stroke: "l(0) 0:#92FE9D 1:#00C9FF",
@@ -40,16 +40,29 @@ const BarChart = ({ isLoading, data, xField, yField }) => {
             stroke: "gray",
             lineWidth: 0.3,
             lineDash: [5, 5],
-            
           },
         },
       },
       axisLine: false,
-    
     },
-    
+    tooltip: {
+      customContent: (title, data) => {
+        return `<div class="p-2 text-[14px]">
+        
+        <p>${title}</p>
+        <div class="flex justify-between gap-5 mt-2">
+
+        <p >${data[0] ? data[0].name : ""}</p>
+        
+        <p>${data[0] ? data[0].value : ""}</p>
+        
+        </div>
+        
+        </div>`;
+      },
+    },
   };
-  return <Column {...config} />;
+  return <Column {...config} theme={"dark"} />;
 };
 
 export default BarChart;
