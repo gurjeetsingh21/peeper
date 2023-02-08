@@ -23,8 +23,8 @@ export const referralData = createSlice({
     },
   },
 });
-export const registeryData = createSlice({
-  name: "registery entities",
+export const registeryContractData = createSlice({
+  name: "registery contract entities",
   initialState: {
     data: [],
   },

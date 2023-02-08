@@ -3,7 +3,7 @@ export const REQUEST_GRAPH_URL =
 
 export const GRAPH_QUERY = {
   registryDayDatas: `{
-    registeryDayDatas(orderBy:date, orderDirection: desc, first: 15) {
+ registeryDayDatas(orderBy:date, orderDirection: desc, first: 15,where:{dailyRegistersCount_not_in:["0"]}) {
       id,
       date,
       dailyTxns,

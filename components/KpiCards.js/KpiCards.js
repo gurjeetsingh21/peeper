@@ -19,19 +19,7 @@ const KpiCards = () => {
   });
   console.log("====================================");
   const isLoading = registeryDayDatas && registeryContracts ? false : true;
-  if (
-    !isLoading &&
-    new Date(registeryDayDatas[0].date * 1000).getDate() !==
-      new Date().getDate()
-  ) {
-    registeryDayDatas = [...registeryDayDatas];
-    registeryDayDatas.unshift({
-      dailyVolumeUSD: "0",
-      dailyUniqueCount: "0",
-      dailyRegistersCount: "0",
-      dailyReferralsCount: "0",
-    });
-  }
+
   return (
     <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
       <Col xs={24} md={11} lg={5}>

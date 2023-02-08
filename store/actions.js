@@ -1,10 +1,10 @@
 import HTTP_SERVICE_CALL from "@/HTTP_SERVICE/HTTP_SERVICE_CALL";
-import { registryDatas, referralData, error, registeryData } from "./slices";
+import { registryDatas, referralData, error, registeryContractData } from "./slices";
 import * as Constants from "@/Constants";
 
 const registryDataActions = registryDatas.actions;
 const referralDataActions = referralData.actions;
-const registeryDataActions = registeryData.actions;
+const registeryDataActions = registeryContractData.actions;
 const errorActions = error.actions;
 
 export const fetchRegistryDatas = () => {
@@ -12,6 +12,7 @@ export const fetchRegistryDatas = () => {
     const [data, isSuccess] = await HTTP_SERVICE_CALL(
       Constants.QUERY_NAMES.REGISTRY_DAY_DATAS
     );
+    console.log(`🚀 ~ file: actions.js:15 ~ data`, data)
     if (isSuccess) {
       dispatch(
         registryDataActions.updateRegistry({
