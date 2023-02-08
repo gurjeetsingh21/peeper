@@ -5,6 +5,8 @@ import moment from "moment";
 import { Row, Col } from "antd";
 import Card from "@/atoms/Card/Card";
 import ReferralDetails from "../ReferralDetails/ReferralDetails";
+import MintDetails from "../MintDetails/MintDetails";
+import BurnDetails from "../BurnDetails/BurnDetails";
 
 const Body = () => {
   const registryData = useSelector((state) => state.registryData);
@@ -49,11 +51,20 @@ const Body = () => {
           </Card>
         </Col>
       </Row>
-      <Row className="gap-x-4 gap-y-4 mb-3 justify-between">
-        <Col xs={24} md={24} lg={12}>
+      <Row className="gap-x-4 gap-y-4 mb-3 justify-between w-full">
+        <Col xs={20} md={20} lg={24}>
           <ReferralDetails />
         </Col>
       </Row>
+      <Row className=" gap-y-1 mb-3 justify-between w-full">
+        <Col xs={20} md={20} lg={12}>
+          <MintDetails />
+        </Col>
+        <Col xs={20} md={20} lg={12}>
+          <BurnDetails />
+        </Col>
+      </Row>
+
       <Row className="gap-x-4 gap-y-4 mb-3">
         <Col xs={24} md={24} lg={24}>
           <Card title="Unique Owners">

@@ -45,3 +45,5 @@ export const QUERY_NAMES = {
   REGISTER_REFERRAL_ENTITIES: "registerReferralEntities",
   REGISTERY_CONTRACT: "registeryContracts",
 };
+
+export const EXPLORER_URL = "https://polygonscan.com/";

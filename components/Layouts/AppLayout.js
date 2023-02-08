@@ -24,11 +24,11 @@ const AppLayout = () => {
   }
   return (
     <Layout hasSider>
-      <Sidebar  />
+      <Sidebar />
       <Layout className="site-layout ">
         <Content className="bg-sidebar-background ">
           <div className="text-white">
-            <div className="p-10 bg-[url('/bg-head.svg')]  bg-contain bg-no-repeat bg-top">
+            <div className="p-10 py-5 bg-[url('/bg-head.svg')]  bg-contain bg-no-repeat bg-top">
               <div className="flex w-full justify-between mb-10">
                 <div className="heading flex text-[28px] mb-5">
                   Dashboard Overview
@@ -37,7 +37,7 @@ const AppLayout = () => {
               </div>
               <KpiCards />
             </div>
-            <div className="p-4 pt-16">
+            <div className="p-10 py-5 ">
               <Body />
             </div>
           </div>
